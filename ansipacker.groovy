@@ -23,11 +23,8 @@
 
 
 class s {
-  static int c = 0
-  static Map codes = [:]
   static esc = (char)27
 }
-
 
 def compress(line, colorcodes) {
   if (line.join().trim() == "") {
@@ -47,8 +44,6 @@ def compress(line, colorcodes) {
 }
 
 def destructure(line) {
-  def esc = (char) 27
-
   chars = []
   colorcodes = []
 
@@ -64,10 +59,8 @@ def destructure(line) {
       chars << c
       colorcodes << colorcode
     }
-    s.codes[colorcode] = 1
   }
 
-  s.c++
   compress(chars, colorcodes)
 }
 
