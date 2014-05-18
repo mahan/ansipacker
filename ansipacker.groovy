@@ -73,14 +73,14 @@ def destructure(line) {
 
 def static main(args) {
 
-	if (args.length == 0) {
-		println "usage: groovy ansipacker <filename>"
-		System.exit(-1)
-	}
+  if (args.length == 0) {
+    println "usage: groovy ansipacker <filename>"
+    System.exit(-1)
+  }
 
-	def lines = []
-	new File(args[0]).eachLine { lines << it }
+  def lines = []
+  new File(args[0]).eachLine { lines << it }
 
   packedLines = []
-	lines.each {destructure it}
+  lines.each {destructure it}
 }
