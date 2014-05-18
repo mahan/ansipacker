@@ -31,7 +31,6 @@ class s {
 
 def compress(line, colorcodes) {
   if (line.join().trim() == "") {
-    //println "skipping empty line"
     return
   }
 
@@ -48,12 +47,7 @@ def compress(line, colorcodes) {
 }
 
 def destructure(line) {
-
-
-  //("foo1 bar30 foo27 baz9 foo600" =~ /foo(\d+)/).each { match, digit -> println "+$digit" }
   def esc = (char) 27
-  //(line =~ /\e\[([\d]+)m([^\e])/).each { _, colorcode, chr -> println "colorcode: $colorcode, char: $chr, ascii: ${(int) chr}" }
-  //(line =~ /\e\[([\d]+)m([^\e]+)/).each { _, colorcode, chr -> print "$esc[${colorcode}m$chr$esc[0m" }
 
   chars = []
   colorcodes = []
@@ -62,12 +56,10 @@ def destructure(line) {
     if (chr != ' ') {break}
     chars << chr
     colorcodes << 0
-    //print chr
   }
 
 
   (line =~ /\e\[([\d]+)m([^\e]+)/).each { _, colorcode, chr -> 
-    //print "$esc[${colorcode}m$chr"
     for (c in chr) {
       chars << c
       colorcodes << colorcode
@@ -76,21 +68,10 @@ def destructure(line) {
   }
 
   s.c++
-  //print "!X! ${s.c}"
-  //println ""
-
-  //println "chars.size = ${chars.size}"
-  //println "colorcodes.size = ${colorcodes.size}"
-
   compress(chars, colorcodes)
 }
 
 def static main(args) {
-
-	//args.eachWithIndex {arg, ix -> println "index: $ix, arg: $arg"}
-
-  //("KAAWW BBXX KCCYY KDDZZ" =~ /K([A-D]+)([V-Z]+)/).each { match, thing, thing2 -> println "1:$thing 2:$thing2" }
-  //System.exit(-1)
 
 	if (args.length == 0) {
 		println "usage: groovy ansipacker <filename>"
@@ -102,7 +83,4 @@ def static main(args) {
 
   packedLines = []
 	lines.each {destructure it}
-
-  //println ""
-  //println s.codes
 }
