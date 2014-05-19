@@ -44,8 +44,8 @@ def compress(line, colorcodes) {
 }
 
 def destructure(line) {
-  chars = []
-  colorcodes = []
+  def chars = []
+  def colorcodes = []
 
   for (chr in line) {
     if (chr != ' ') {break}
@@ -74,6 +74,6 @@ def static main(args) {
   def lines = []
   new File(args[0]).eachLine { lines << it }
 
-  packedLines = []
+  def packedLines = []
   lines.each {destructure it}
 }
