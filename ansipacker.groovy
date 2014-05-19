@@ -74,6 +74,6 @@ def static main(args) {
   def lines = []
   new File(args[0]).eachLine { lines << it }
 
-  def packedLines = []
+  //def packedLines = []
   lines.each {destructure it}
 }
